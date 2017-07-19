@@ -1,0 +1,28 @@
+---
+- include: packages.yml
+
+- name: Mount VirtualBox guest additions ISO.
+  mount:
+    name: /tmp/vbox
+    src: /root/VBoxGuestAdditions.iso
+    opts: loop
+    state: mounted
+    fstype: iso9660
+
+- name: Run VirtualBox guest additions installation.
+  shell: sh /tmp/vbox/VBoxLinuxAdditions.run --nox11
+  failed_when: false
+
+- name: Unmount VirtualBox guest additions ISO.
+  mount:
+    name: /tmp/vbox
+    src: /roott/VBoxGuestAdditions.iso
+    state: absent
+    fstype: iso9660
+
+- name: Delete VirtualBox guest additions ISO.
+  file:
+    path: /root/VBoxGuestAdditions.iso
+    state: absent
+
+- include: cleanup.yml

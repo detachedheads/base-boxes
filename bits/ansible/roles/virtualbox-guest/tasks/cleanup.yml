@@ -1,0 +1,20 @@
+---
+- name: Cleanup OS specific packages
+  include: cleanup-Debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Cleanup OS specific packages
+  include: cleanup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Clean up any residual artifacts
+  file: name={{ item}} follow=yes state=absent
+  with_items:
+    - /root/VBoxGuestAdditions.iso
+    - /tmp/post-virtualbox-guest-packages.txt
+    - /tmp/pre-virtualbox-guest-packages.txt
+    - /tmp/vbox
+    - /var/lib/dkms/vboxguest
+    - /var/log/VBoxGuestAdditions.log
+    - /var/log/vboxadd-install.log
+    - /var/log/vboxadd-install-x11.log

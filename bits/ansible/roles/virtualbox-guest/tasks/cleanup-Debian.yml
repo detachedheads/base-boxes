@@ -1,0 +1,10 @@
+---
+  - name: Remove installed packages for compiling
+    apt:
+      name="{{ installed.stdout_lines }}"
+      state=absent
+      update_cache=yes
+      cache_valid_time=86400
+      autoremove=yes
+      purge=yes
+    

@@ -1,0 +1,9 @@
+---
+
+- name: Include OS specific packages
+  include: packages-Debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Include OS specific packages
+  include: packages-RedHat.yml
+  when: ansible_os_family == 'RedHat'

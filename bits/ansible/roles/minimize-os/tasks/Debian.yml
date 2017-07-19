@@ -1,0 +1,15 @@
+---
+- name: Remove unnecessary packages.
+  apt: "name={{ item }} state=absent"
+  with_items:
+    - perl
+
+- name: Remove unnecessary dev packages
+  shell: "apt-get -y remove '.*-dev$'"
+
+- name: Remove any dangling dependencies and apt cache
+  command: "{{ item }}"
+  with_items:
+    - apt autoremove
+    - apt-get -y autoremove
+    - apt-get -y clean
