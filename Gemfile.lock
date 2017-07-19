@@ -1,0 +1,26 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    colorize (0.8.1)
+    erubis (2.7.0)
+    filesize (0.1.1)
+    log4r (1.1.10)
+    multi_json (1.12.1)
+    racker (0.2.0)
+      log4r (~> 1.1.10)
+      multi_json (~> 1.8)
+    rake (12.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (= 1.15.1)
+  colorize
+  erubis
+  filesize
+  racker
+  rake
+
+BUNDLED WITH
+   1.15.1

@@ -1,0 +1,7 @@
+
+.DS_Store
+.bundle/
+
+boxes/
+output/
+packer_cache/
