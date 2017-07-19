@@ -10,6 +10,6 @@
 - name: Remove any dangling dependencies and apt cache
   command: "{{ item }}"
   with_items:
-    - apt autoremove
+    - apt -y autoremove
     - apt-get -y autoremove
     - apt-get -y clean
