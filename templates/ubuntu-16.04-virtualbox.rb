@@ -29,7 +29,11 @@ TEMPLATE_DEFINITIONS  = [
   
   # Provisioner - Cleanup
   File.join(PROVISIONER_TEMPLATES,      'os/linux/zero-empty-space.rb'),
-  
-  # Post Processors
-  File.join(POSTPROCESSOR_TEMPLATES,    'vagrant/output.rb'),       # Configure the vagrant box output
 ]
+
+# If RELEASE is set push to vagrant cloud
+TEMPLATE_DEFINITIONS << if ENV['RELEASE']
+  File.join(POSTPROCESSOR_TEMPLATES,    'vagrant-cloud/output.rb')        # Configure the vagrant box output
+else
+  File.join(POSTPROCESSOR_TEMPLATES,    'vagrant/output.rb')              # Configure the vagrant box output
+end
