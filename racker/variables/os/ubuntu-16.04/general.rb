@@ -12,5 +12,7 @@ Racker::Processor.register_template do |t|
     'iso_url'                           => 'http://releases.ubuntu.com/16.04/ubuntu-16.04.2-server-amd64.iso',
     'config_file'                       => 'preseed/ubuntu-16.04.cfg',
     'shutdown_command'                  => 'sudo systemctl poweroff',
+    'vagrant_cloud_token'               => '{{ env `VAGRANT_CLOUD_TOKEN`}}',
+    'version'                           => '1.0.{{isotime "20060102"}}',
   }
 end

@@ -12,5 +12,7 @@ Racker::Processor.register_template do |t|
     'iso_url'                           => 'http://mirror.rackspace.com/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso',
     'config_file'                       => 'kickstart/centos-7.ks',
     'shutdown_command'                  => 'sudo /sbin/shutdown -P now',
+    'vagrant_cloud_token'               => '{{ env `VAGRANT_CLOUD_TOKEN`}}',
+    'version'                           => '1.0.{{isotime "20060102"}}',
   }
 end
