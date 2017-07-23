@@ -1,14 +1,17 @@
 # Disable echoing of sh commands (sh command output will still be displayed)
 RakeFileUtils.verbose_flag  = false
 
+# The root directory of this project 
+ROOT_DIR = File.expand_path(File.join(File.dirname(__FILE__), '../..'))
+
 # Directories
-BOXES_DIR                   = File.join('.',  'boxes')
-BUILDER_TEMPLATES           = File.join('.',  'racker/builder')
-OS_TEMPLATES                = File.join('.',  'racker/os')
-POSTPROCESSOR_TEMPLATES     = File.join('.',  'racker/postprocessor')
-PROVISIONER_TEMPLATES       = File.join('.',  'racker/provisioner')
-RACKER_TEMPLATES            = File.join('.',  'templates')
-VARIABLES_TEMPLATES         = File.join('.',  'racker/variables')
+BOXES_DIR                   = File.join(ROOT_DIR,  'boxes')
+BUILDER_TEMPLATES           = File.join(ROOT_DIR,  'racker/builder')
+OS_TEMPLATES                = File.join(ROOT_DIR,  'racker/os')
+POSTPROCESSOR_TEMPLATES     = File.join(ROOT_DIR,  'racker/postprocessor')
+PROVISIONER_TEMPLATES       = File.join(ROOT_DIR,  'racker/provisioner')
+RACKER_TEMPLATES            = File.join(ROOT_DIR,  'templates')
+VARIABLES_TEMPLATES         = File.join(ROOT_DIR,  'racker/variables')
 
 # Binaries
 PACKER_BIN                  = 'packer'
