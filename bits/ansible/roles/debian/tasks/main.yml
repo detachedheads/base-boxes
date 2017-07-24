@@ -15,6 +15,9 @@
 
   - include: guest.yml
 
+  - name: Remove unnecessary locales
+    shell: locale-gen --purge en_US.UTF-8
+
   - name: Remove unnecessary packages.
     apt: "name={{ item }} state=absent"
     with_items:

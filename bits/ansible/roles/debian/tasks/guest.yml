@@ -13,6 +13,6 @@
     include: guest-virtualbox.yml
     when: virtualbox_check.stat.exists
   
-  # - name: Install VMWare Tools
-  #   include: guest-vmware.yml
-  #   when: vmware_check.rc == 0
+  - name: Install VMWare Tools
+    include: guest-vmware.yml
+    when: vmware_check.rc == 0

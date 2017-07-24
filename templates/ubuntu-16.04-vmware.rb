@@ -1,6 +1,6 @@
 BOX_OS          = 'ubuntu-16.04'
 BOX_OS_SHORT    = 'ubuntu'
-BOX_BUILDER     = 'virtualbox'
+BOX_BUILDER     = 'vmware_desktop'
 BOX_NAME        = File.basename(__FILE__, '.rb') 
 
 USER_VARIABLES        = {
@@ -13,7 +13,7 @@ TEMPLATE_DEFINITIONS  = [
   File.join(VARIABLES_TEMPLATES,        "os/#{BOX_OS}/general.rb"),
 
   # # Builders
-  File.join(BUILDER_TEMPLATES,          "#{BOX_BUILDER}/iso.rb"),           # Bring in the virtualbox iso configuration
+  File.join(BUILDER_TEMPLATES,          "#{BOX_BUILDER}/iso.rb"),           # Bring in the vmware iso configuration
   File.join(OS_TEMPLATES,               "#{BOX_OS}/#{BOX_BUILDER}/iso.rb"), # Bring in the ubuntu iso configuration
 
   # Provisioner - Upgrade all packages
@@ -30,7 +30,7 @@ TEMPLATE_DEFINITIONS  = [
 
   # Provisioner - Clean up apt after everything is finished
   File.join(PROVISIONER_TEMPLATES,      "os/#{BOX_OS_SHORT}/apt-clean.rb"),
-  
+
   # Provisioner - Cleanup
   File.join(PROVISIONER_TEMPLATES,      'os/linux/zero-empty-space.rb'),
 ]
