@@ -1,19 +1,6 @@
 ---
 - hosts: all
-  pre_tasks:
-    - name: Check if VirtualBox is running the guest VM.
-      stat: path=/root/.vbox_version
-      register: virtualbox_check
-
-    # - name: Check if VMWare is running the guest VM.
-    #   shell: "cat /proc/scsi/scsi | grep VMware"
-    #   changed_when: false
-    #   failed_when: false
-    #   register: vmware_check
-
   roles:
-    - ca-certificates
-    - sshd
+    - { role: debian, when: ansible_os_family == 'Debian' }
+    #- { role: redhat, when: ansible_os_family == 'RedHat' }
     - vagrant
-    - { role: virtualbox-guest, when: virtualbox_check.stat.exists }
-    - minimize-os

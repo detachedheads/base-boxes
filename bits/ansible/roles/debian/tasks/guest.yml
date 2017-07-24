@@ -1,0 +1,18 @@
+---
+  - name: Check if VirtualBox is running the guest VM.
+    stat: path=/root/.vbox_version
+    register: virtualbox_check
+
+  - name: Check if VMWare is running the guest VM.
+    shell: "cat /proc/scsi/scsi | grep VMware"
+    changed_when: false
+    failed_when: false
+    register: vmware_check
+
+  - name: Install Virtualbox Guest Additions
+    include: guest-virtualbox.yml
+    when: virtualbox_check.stat.exists
+  
+  # - name: Install VMWare Tools
+  #   include: guest-vmware.yml
+  #   when: vmware_check.rc == 0

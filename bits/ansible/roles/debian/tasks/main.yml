@@ -1,0 +1,31 @@
+---
+  - name: Disable UseDNS in SSHD
+    lineinfile:
+      dest: /etc/ssh/sshd_config
+      regexp: "^UseDNS"
+      line: "UseDNS no"
+      insertafter: EOF
+      state: present
+
+  - name: Update Mozilla extracted certificates
+    get_url:
+      url: http://curl.haxx.se/ca/cacert.pem
+      dest: /etc/ssl/certs/cacert.pem
+      mode: 0755
+
+  - include: guest.yml
+
+  - name: Remove unnecessary packages.
+    apt: "name={{ item }} state=absent"
+    with_items:
+      - perl
+
+  - name: Remove unnecessary dev packages
+    shell: "apt-get -y remove '.*-dev$'"
+
+  - name: Remove any dangling dependencies and apt cache
+    command: "{{ item }}"
+    with_items:
+      - apt -y autoremove
+      - apt-get -y autoremove
+      - apt-get -y clean
