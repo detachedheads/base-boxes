@@ -136,6 +136,7 @@ rootfiles
 sudo
 xfsprogs
 yum
+yum-utils
 
 #
 # Extra packages to ease usability
