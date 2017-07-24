@@ -13,6 +13,7 @@ Racker::Processor.register_template do |t|
       'no_release'          => 'true',
       'type'                => 'vagrant-cloud',
       'version'             => '{{ user `version`}}',
+      'version_description' => '{{ user `version_description` }}',
     }
   ]
  end
