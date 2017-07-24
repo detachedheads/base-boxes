@@ -5,3 +5,5 @@
 boxes/
 output/
 packer_cache/
+packer-tempfile*
+.public_roles/*
