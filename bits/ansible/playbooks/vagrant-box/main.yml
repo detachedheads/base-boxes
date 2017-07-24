@@ -2,5 +2,5 @@
 - hosts: all
   roles:
     - { role: debian, when: ansible_os_family == 'Debian' }
-    #- { role: redhat, when: ansible_os_family == 'RedHat' }
+    - { role: redhat, when: ansible_os_family == 'RedHat' }
     - vagrant

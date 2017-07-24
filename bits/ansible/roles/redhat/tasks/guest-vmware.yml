@@ -1,0 +1,11 @@
+---
+  - name: 
+    file:
+      path: /mnt/hgfs
+      state: directory
+
+  - name: Install open-vm-tools.
+    yum: "name={{ item }} state=present"
+    with_items:
+      - open-vm-tools
+      - fuse

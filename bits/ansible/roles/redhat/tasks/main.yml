@@ -1,0 +1,58 @@
+---
+  - name: Disable Requiretty from sudoers
+    lineinfile: 
+      dest: /etc/sudoers 
+      regexp: "Defaults    requiretty" 
+      line: "#Defaults    requiretty"
+  
+  - name: Disable UseDNS in SSHD
+    lineinfile:
+      dest: /etc/ssh/sshd_config
+      regexp: "^UseDNS"
+      line: "UseDNS no"
+      insertafter: EOF
+      state: present
+
+  - name: Update modprobe for Xen devices
+    lineinfile:
+      create: yes
+      dest: /etc/modprobe.d/xen_blkfront.conf
+      regexp: "^options xen_blkfront sda_is_xvda=1"
+      line: "options xen_blkfront sda_is_xvda=1"
+      insertafter: EOF
+      state: present
+
+  - name: Update /etc/fstab for Xen devices
+    replace:
+      path: /etc/fstab
+      regexp: 'xvde'
+      replace: 'xvda'
+      backup: yes
+
+  - name: Update Mozilla extracted certificates
+    get_url:
+      url: http://curl.haxx.se/ca/cacert.pem
+      dest: /etc/pki/tls/certs/ca-bundle.crt
+      mode: 0755
+
+  - include: guest.yml
+
+  - name: Remove persistent net rules
+    file:
+      path: /etc/udev/rules.d/70-persistent-net.rules
+      state: absent
+      
+  - name: Clean ifcfg-eth0
+    lineinfile:
+      dest: /etc/sysconfig/network-scripts/ifcfg-eth0
+      regexp: "{{ item }}"
+      state: absent
+    with_items:
+      - '^HWADDR'
+      - '^UUID'
+    
+  - name: Remove any dangling dependencies
+    command: "{{ item }}"
+    with_items:
+      - yum clean all
+    ignore_errors: yes
