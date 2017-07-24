@@ -44,6 +44,15 @@
       path: /root/VBoxGuestAdditions.iso
       state: absent
   
+  - name: Remove diff files
+    file:
+      name: "{{ item }}"
+      name: "{{ item }}"
+      state: absent
+    with_items:
+      - /tmp/pre-virtualbox-guest-packages.txt
+      - /tmp/post-virtualbox-guest-packages.txt
+
   - name: Remove installed packages for compiling
     yum:
       name: "{{ installed.stdout_lines }}"
