@@ -9,7 +9,7 @@ module BB
 
     def self.generate_packer_template(template_definitions)
       # Create a temp file
-      file = Tempfile.new('packer')
+      file = Tempfile.new('packer-tempfile', '.')
 
       puts template_definitions.join(' ') if defined?(::DEBUG) && ::DEBUG
       
@@ -21,16 +21,11 @@ module BB
     end
 
     def self.generate_provider_specific_variables(box_name)
-      case ::BOX_BUILDER
-      when 'virtualbox'
-        {
+      {
           'bb_box_name'     => ::BOX_NAME,
           'bb_output_file'  => generate_packer_box_name(box_name),
           'bb_vm_name'      => "bb-#{BOX_NAME}",
-        }
-      else
-        {}
-      end  
+      }
     end
   end
 end
