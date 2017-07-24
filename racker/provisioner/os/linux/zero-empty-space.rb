@@ -1,7 +1,7 @@
 Racker::Processor.register_template do |t|
   
   t.provisioners = {
-    900 => {
+    999 => {
       'zero-empty-space' => {
         'type'            => 'shell',
         'execute_command' => "chmod +x {{ .Path }}; {{ .Vars }} {{user `execute_command_sudo`}} '{{ .Path }}'",
