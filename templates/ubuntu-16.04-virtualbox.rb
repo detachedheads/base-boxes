@@ -13,7 +13,7 @@ TEMPLATE_DEFINITIONS  = [
 
   # # Builders
   File.join(BUILDER_TEMPLATES,          "#{BOX_BUILDER}/iso.rb"),           # Bring in the virtualbox iso configuration
-  File.join(OS_TEMPLATES,               "#{BOX_OS}/#{BOX_BUILDER}/iso.rb"), # Bring in the centos iso configuration
+  File.join(OS_TEMPLATES,               "#{BOX_OS}/#{BOX_BUILDER}/iso.rb"), # Bring in the ubuntu iso configuration
 
   # Provisioner - Upgrade all packages
   File.join(PROVISIONER_TEMPLATES,      "os/#{BOX_OS_SHORT}/apt-upgrade.rb"),
