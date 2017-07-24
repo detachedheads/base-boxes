@@ -1,16 +1,11 @@
 #!/bin/bash
 
-echo "==> Zeroing out free space..."
-dd if=/dev/zero of=/EMPTY bs=1M
-rm -f /EMPTY
-sync
-
 # Whiteout root partition
 echo "==> Whiteout root partition..."
 count=`df --sync -kP / | tail -n1  | awk -F ' ' '{print $4}'`; 
 let count--
-dd if=/dev/zero of=/tmp/whitespace bs=1024 count=$count;
-rm /tmp/whitespace;
+dd if=/dev/zero of=/whitespace bs=1024 count=$count;
+rm /whitespace;
  
 # Whiteout /boot partition
 echo "==> Whiteout boot partition..."
@@ -28,3 +23,5 @@ if [ "$swappart" != "" ]; then
   mkswap $swappart;
   swapon $swappart;
 fi
+
+sync
