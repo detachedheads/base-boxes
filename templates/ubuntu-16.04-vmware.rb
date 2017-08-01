@@ -4,8 +4,9 @@ BOX_BUILDER     = 'vmware_desktop'
 BOX_NAME        = File.basename(__FILE__, '.rb') 
 
 USER_VARIABLES        = {
-  'ansible_playbook' => 'bits/ansible/playbooks/vagrant-box/main.yml',
-  'headless'         => 'false',
+  'ansible_playbook'    => 'bits/ansible/playbooks/vagrant-box/main.yml',
+  'headless'            => 'false',
+  'version_description' => '',
 }
 
 TEMPLATE_DEFINITIONS  = [
