@@ -22,9 +22,9 @@ module BB
 
     def self.generate_provider_specific_variables(box_name)
       {
-          'bb_box_name'     => ::BOX_NAME,
-          'bb_output_file'  => generate_packer_box_name(box_name),
-          'bb_vm_name'      => "bb-#{BOX_NAME}",
+        'bb_box_name'     => ::BOX_NAME,
+        'bb_output_file'  => generate_packer_box_name(box_name),
+        'bb_vm_name'      => ::BOX_NAME,
       }
     end
   end
