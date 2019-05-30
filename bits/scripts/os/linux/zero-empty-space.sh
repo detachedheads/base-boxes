@@ -17,9 +17,10 @@ rm /boot/whitespace;
 # Whiteout swap partitions
 echo "==> Whiteout swap partition(s)..."
 swappart=$(cat /proc/swaps | grep -v Filename | tail -n1 | awk -F ' ' '{print $1}')
+swapsize=$(cat /proc/swaps | grep -v Filename | tail -n1 | awk -F ' ' '{print $3}')
 if [ "$swappart" != "" ]; then
   swapoff $swappart;
-  dd if=/dev/zero of=$swappart;
+  dd if=/dev/zero of=$swappart bs=1024 count=$swapsize;
   mkswap $swappart;
   swapon $swappart;
 fi
